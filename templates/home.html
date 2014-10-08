@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+{% block content %}
+    {% for post in posts %}
+    <h1>{{ post.title }}</h1>    
+    <div>{{ post.short|safe }}</div>
+    <div><a href="/post/{{ post._id }}"> Voir plus </a></div>
+    {% endfor %}
+    {% if first == false %}
+    	<div><a href="/index/{{ current_page - 1 }}">Page précédente</a></div>
+    {% endif %}
+    {% if last == false %}
+	    <div><a href="/index/{{ current_page + 1 }}">Page suivante</a></div>
+    {% endif %}
+{% endblock %}

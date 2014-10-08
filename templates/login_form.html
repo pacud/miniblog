@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% block content %}
+    {% if warning %}
+        <div><span>{{ warning }}</span></div>
+    {% endif %}
+
+    <form action="/login" method="post">
+        <div><label for="login">Login</label><input id="login" type="text" name="login" /></div>
+        <div>
+            <label for="password_visible">Password</label>
+            <input id="password_visible" type="password" name="password_visible" />
+            <input id="password" type="hidden" name="password" /></div>
+        <div><input type="submit" value="Login" /></div>
+    </form>
+
+    <script>
+        function onSubmit(){
+            $('#password').val($.sha1($('#password_visible').val()));
+            return true;
+        }
+        $("form").submit(onSubmit);
+    </script>
+
+{% endblock %}
