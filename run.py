@@ -27,9 +27,12 @@ debug = config.get('miniblog', 'debug')
 if debug == 'True':
     debug = True
 
-@app.route('/add_post')
+@app.route('/add_post', methods=['GET', 'POST'])
 def add_post():
-    add_new_post(db)
+    if request.method == "POST":
+        post_id = add_new_post(db, request.form)
+        if post_id:
+            return redirect('/post/'+str(post_id))
     return render_template('add_post.html')
 
 @app.route('/logout')
@@ -51,7 +54,7 @@ def login():
             warning = u"Authentication failed."
         else :
             session['username'] = user['login']
-            return redirect('/index/0') #TODO : make it use url_for
+            return redirect('/index/0')
     return render_template("login_form.html", warning=warning)
 
 @app.route('/post/<post_id>')
