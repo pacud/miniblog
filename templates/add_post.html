@@ -1,0 +1,43 @@
+{% extends "main.html" %}
+{% block content %}
+
+    <form action="/add_post" method="post">
+        <div>
+            <label for="title">Title</label>
+            <input id="title" type="text" name="title" />
+        </div>
+        <div>
+            <label for="short">Short description</label>
+            <input id="short" type="text" name="short" />
+        </div>
+        <div>
+            <label for="body">Body</label>
+            <div id="summernote"></div>
+            <input id="body" type="hidden" name="body" />
+        </div>
+        <div>
+            <label for="date">Date</label>
+            <input id="date" type="date" name="date" />
+        </div>
+        <div>
+            <input type="submit" value="Add Post" />
+        </div>
+
+    </form>
+
+    <script type="text/javascript">
+
+        function onSubmit() {
+            $('#body').val($('#summernote').code());
+            return true;
+        }
+
+        $(document).ready( function() {
+            $('#date').val(getDate());
+            $('#summernote').summernote();
+            $("form").submit(onSubmit);
+        });
+
+    </script>
+
+{% endblock %}

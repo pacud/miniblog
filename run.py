@@ -30,7 +30,7 @@ if debug == 'True':
 @app.route('/add_post')
 def add_post():
     add_new_post(db)
-    return "add post"
+    return render_template('add_post.html')
 
 @app.route('/logout')
 def logout():
