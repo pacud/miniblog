@@ -71,9 +71,9 @@ def index(page_number=0):
     limit = (page_number + 1) * nb_posts_by_page
     first = False if offset > 0 else True
     last = False if limit < db.posts.count() else True
-    posts = [post for post in db.posts.find()]
+    posts = [post for post in db.posts.find().sort("date", -1)]
     return render_template("home.html", title="home", posts=posts[offset:limit],
-    			current_page=page_number, first=first, last=last)
+                current_page=page_number, first=first, last=last)
 
 if __name__ == '__main__':
     app.run(debug=debug)
