@@ -4,19 +4,21 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 from bson.objectid import ObjectId
 import pymongo
+import ConfigParser
 
 from session import authenticate
 from manage_posts import add_post as add_new_post
 
+#init config
+config = ConfigParser.ConfigParser()
+config.read("config.ini")
 #init app
-app_name = "flask_experiment"
-app = Flask(app_name)
+app = Flask(config.get('miniblog', 'app_name'))
 #configure app for session
-secret_key = "YZC2GwVUyMFY6fWFyrPjJpJy"
-app.secret_key = secret_key
+app.secret_key = config.get('miniblog', 'secret_key')
 #init db
 client = pymongo.MongoClient("127.0.0.1", 27017)
-db = client.flask_experiment
+db = client.miniblog
 
 @app.route('/add_post')
 def add_post():
