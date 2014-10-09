@@ -10,8 +10,11 @@ from session import authenticate
 from manage_posts import add_post as add_new_post
 
 #init config
-config = ConfigParser.ConfigParser()
-config.read("config.ini")
+config = ConfigParser.SafeConfigParser()
+if config.read('config.ini') == [] :
+    config.add_section('miniblog')
+    config.set('miniblog', 'app_name', 'miniblog')
+    config.set('miniblog', 'secret_key', 'RAE9Td7BEUy8xCmT4Hm5wXCR')
 #init app
 app = Flask(config.get('miniblog', 'app_name'))
 #configure app for session
