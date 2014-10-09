@@ -29,6 +29,11 @@ if debug == 'True':
 
 @app.route('/add_post', methods=['GET', 'POST'])
 def add_post():
+    """displays add_post.html or add the post and displays it
+
+    if the method is POST, calls add_post and gets the id back to display the post
+    else displays add_post.html which contains the "new post" form
+    """
     if request.method == "POST":
         post_id = add_new_post(db, request.form)
         if post_id:
@@ -37,11 +42,16 @@ def add_post():
 
 @app.route('/logout')
 def logout():
+    """logs out"""
     del session['username']
     return redirect('/index/0')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """logs in if the form is correctly filled. Also displays the form.
+
+    when not displaying the form, checks for the Authentication before updating the session.
+    """
     warning=None
     if request.method == "POST":
         try:
@@ -59,13 +69,21 @@ def login():
 
 @app.route('/post/<post_id>')
 def show_post(post_id):
-    """show the post with the given post_id"""
+    """show the post with the given post_id
+
+    :params post_id: post_id in the mongo database
+    """
     post = db.posts.find_one({"_id": ObjectId(post_id)})
     return render_template("post.html", post=post)
 
 @app.route('/')
 @app.route('/index/<int:page_number>')
 def index(page_number=0):
+    """home page in charge of displaying posts.
+
+    displays 5 posts max ordered by date, most recent first.
+    :params page_number: optional chose which page to display.
+    """
     nb_posts_by_page = 5
     offset = page_number * nb_posts_by_page
     limit = (page_number + 1) * nb_posts_by_page
