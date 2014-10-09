@@ -4,11 +4,11 @@
     <form action="/add_post" method="post">
         <div>
             <label for="title">Title</label>
-            <input id="title" type="text" name="title" />
+            <input id="title" type="text" name="title" required />
         </div>
         <div>
             <label for="short">Short description</label>
-            <input id="short" type="text" name="short" />
+            <input id="short" type="text" name="short" required />
         </div>
         <div>
             <label for="body">Body</label>
@@ -17,7 +17,7 @@
         </div>
         <div>
             <label for="date">Date</label>
-            <input id="date" type="date" name="date" />
+            <input id="date" type="datetime" name="date" required />
         </div>
         <div>
             <input type="submit" value="Add Post" />
@@ -33,7 +33,7 @@
         }
 
         $(document).ready( function() {
-            $('#date').val(getDate());
+            $('#date').val(getDateTime());
             $('#summernote').summernote();
             $("form").submit(onSubmit);
         });
