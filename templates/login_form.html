@@ -18,7 +18,9 @@
             $('#password').val($.sha1($('#password_visible').val()));
             return true;
         }
-        $("form").submit(onSubmit);
+        $(document).ready( function() {
+            $("form").submit(onSubmit);
+        });
     </script>
 
 {% endblock %}
