@@ -41,10 +41,10 @@ def login():
             login = request.form['login']
             password = request.form['password']
         except KeyError:
-            warning = u"Tous les champs sont obligatoires."
+            warning = u"Every field is mandatory."
         user = authenticate(db, login, password)
         if user is None :
-            warning = u"L'autentification a échoué."
+            warning = u"Authentication failed."
         else :
             session['username'] = user['login']
             return redirect('/index/0') #TODO : make it use url_for
@@ -58,7 +58,7 @@ def show_post(post_id):
 
 @app.route('/')
 @app.route('/index/<int:page_number>')
-def hello_world(page_number=0):
+def index(page_number=0):
     nb_posts_by_page = 5
     offset = page_number * nb_posts_by_page
     limit = (page_number + 1) * nb_posts_by_page
