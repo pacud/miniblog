@@ -15,6 +15,7 @@ if config.read('config.ini') == [] :
     config.add_section('miniblog')
     config.set('miniblog', 'app_name', 'miniblog')
     config.set('miniblog', 'secret_key', 'RAE9Td7BEUy8xCmT4Hm5wXCR')
+    config.set('miniblog', 'debug', 'False')
 #init app
 app = Flask(config.get('miniblog', 'app_name'))
 #configure app for session
@@ -22,6 +23,9 @@ app.secret_key = config.get('miniblog', 'secret_key')
 #init db
 client = pymongo.MongoClient("127.0.0.1", 27017)
 db = client.miniblog
+debug = config.get('miniblog', 'debug')
+if debug == 'True':
+    debug = True
 
 @app.route('/add_post')
 def add_post():
@@ -69,4 +73,4 @@ def index(page_number=0):
     			current_page=page_number, first=first, last=last)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=debug)
