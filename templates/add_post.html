@@ -1,4 +1,19 @@
 {% extends "main.html" %}
+{% block spec_heads_css %}
+
+    <!-- summernote -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/summernote.css') }}">
+
+{% endblock %}
+{% block spec_heads_js %}
+
+    <!-- misc js, mostly helpers-->
+    <script src="{{ url_for('static', filename='js/misc.js')}}"></script>
+    <!-- summernote -->
+    <script src="{{ url_for('static', filename='js/summernote.min.js') }}"></script>
+
+{% endblock %}
 {% block content %}
 
     <form action="/add_post" method="post">

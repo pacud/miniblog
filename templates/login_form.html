@@ -1,4 +1,10 @@
 {% extends "main.html" %}
+{% block spec_heads_js %}
+
+    <!-- sha1 script -->
+    <script src="{{ url_for('static', filename='js/sha1.js') }}"></script>
+
+{% endblock %}
 {% block content %}
     {% if warning %}
         <div><span>{{ warning }}</span></div>

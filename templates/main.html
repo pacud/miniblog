@@ -6,16 +6,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <!-- 2.11 version of jquery on googleapis -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <!-- place holder for page specific css files -->
+    {% block spec_heads_css %}{% endblock %}
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <!-- misc js, mostly helpers-->
-    <script src="{{ url_for('static', filename='js/misc.js')}}"></script>
-    <!-- sha1 script -->
-    <script src="{{ url_for('static', filename='js/sha1.js') }}"></script>
-    <!-- summernote -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/summernote.css') }}">
-    <script src="{{ url_for('static', filename='js/summernote.min.js') }}"></script>
+    <!-- place holder for page specific js files -->
+    {% block spec_heads_js %}{% endblock %}
     <!-- meta -->
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
