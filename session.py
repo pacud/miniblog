@@ -1,6 +1,9 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from functools import wraps
+from flask import render_template
+
 def authenticate(db, login, password):
     """looks for login and password in database to check authentication
 
@@ -13,3 +16,13 @@ def authenticate(db, login, password):
     if not user :
         return None
     return user
+
+def check_authentication(session):
+    def wrapper(decorated):
+        @wraps(decorated)
+        def wrapped(*args, **kwargs):
+            if session.get('username', None):
+                return decorated(*args, **kwargs)
+            return render_template("not_logged_in.html")
+        return wrapped
+    return wrapper

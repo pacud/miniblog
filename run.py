@@ -6,7 +6,7 @@ from bson.objectid import ObjectId
 import pymongo
 import ConfigParser
 
-from session import authenticate
+from session import authenticate, check_authentication
 from manage_posts import add_post as add_new_post
 
 #init config
@@ -28,6 +28,7 @@ if debug == 'True':
     debug = True
 
 @app.route('/add_post', methods=['GET', 'POST'])
+@check_authentication(session)
 def add_post():
     """displays add_post.html or add the post and displays it
 
