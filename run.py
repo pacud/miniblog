@@ -37,14 +37,14 @@ def add_post():
     if request.method == "POST":
         post_id = add_new_post(db, request.form)
         if post_id:
-            return redirect('/post/'+str(post_id))
+            return redirect(url_for('show_post', post_id=str(post_id)))
     return render_template('add_post.html')
 
 @app.route('/logout')
 def logout():
     """logs out"""
     del session['username']
-    return redirect('/index/0')
+    return redirect(url_for('index', page_number=0))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -64,10 +64,10 @@ def login():
             warning = u"Authentication failed."
         else :
             session['username'] = user['login']
-            return redirect('/index/0')
+            return redirect(url_for('index', page_number=0))
     return render_template("login_form.html", warning=warning)
 
-@app.route('/post/<post_id>')
+@app.route('/post/<string:post_id>')
 def show_post(post_id):
     """show the post with the given post_id
 
