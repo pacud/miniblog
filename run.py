@@ -72,7 +72,7 @@ def login():
 def show_post(post_id):
     """show the post with the given post_id
 
-    :params post_id: post_id in the mongo database
+    :param post_id: post_id in the mongo database
     """
     post = db.posts.find_one({"_id": ObjectId(post_id)})
     return render_template("post.html", post=post)
@@ -83,7 +83,7 @@ def index(page_number=0):
     """home page in charge of displaying posts.
 
     displays 5 posts max ordered by date, most recent first.
-    :params page_number: optional chose which page to display.
+    :param page_number: optional chose which page to display.
     """
     nb_posts_by_page = 5
     offset = page_number * nb_posts_by_page

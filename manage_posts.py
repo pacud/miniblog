@@ -4,8 +4,8 @@
 def add_post(db, data):
     """add a post in the mongo database
 
-    :params db: mongodb database
-    :params data: data directly from the html form
+    :param db: mongodb database
+    :param data: data directly from the html form
     :returns: returns the post id post insert
     """
     post = {
