@@ -18,6 +18,11 @@ def authenticate(db, login, password):
     return user
 
 def check_authentication(session):
+    """decorator designed to check if user is authenticated
+
+        :param session: flask session
+        :returns: not_logged_in page if authentication fails or the decorated function otherwise
+    """
     def wrapper(decorated):
         @wraps(decorated)
         def wrapped(*args, **kwargs):
