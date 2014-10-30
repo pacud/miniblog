@@ -4,6 +4,7 @@
 from functools import wraps
 from flask import render_template
 
+
 def authenticate(db, login, password):
     """looks for login and password in database to check authentication
 
@@ -12,16 +13,18 @@ def authenticate(db, login, password):
         :param password: password from html form
         :returns: None if no user is found otherwise the user
     """
-    user = db.users.find_one({'login':login, 'password':password})
-    if not user :
+    user = db.users.find_one({'login': login, 'password': password})
+    if not user:
         return None
     return user
+
 
 def check_authentication(session):
     """decorator designed to check if user is authenticated
 
-        :param session: flask session
-        :returns: not_logged_in page if authentication fails or the decorated function otherwise
+    :param session: flask session
+    :returns: not_logged_in page if authentication fails or the decorated
+    function otherwise
     """
     def wrapper(decorated):
         @wraps(decorated)
