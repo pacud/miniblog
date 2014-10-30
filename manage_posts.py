@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+
 def add_post(db, data):
     """add a post in the mongo database
 
