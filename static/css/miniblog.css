@@ -1,0 +1,15 @@
+.header {
+    background-color: #FFFFFF;
+    border-bottom: solid 2px black;
+}
+
+body {
+    background-color: #999999;
+}
+
+.articles {
+    border-radius: 25px;
+    background-color: #FFFFFF;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
