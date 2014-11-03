@@ -2,13 +2,17 @@
 {% block content %}
     {% for post in posts %}
     <h1>{{ post.title }}</h1>    
-    <div>{{ post.short|safe }}</div>
+    <div class="italic">{{ post.short|safe }}</div>
     <div><a href="/post/{{ post._id }}">See more</a></div>
     {% endfor %}
-    {% if first == false %}
-        <div><a href="/index/{{ current_page - 1 }}">Next page</a></div>
-    {% endif %}
-    {% if last == false %}
-        <div><a href="/index/{{ current_page + 1 }}">Previous Page</a></div>
+    {% if first == false or last == false %}
+    <ul class="pager">
+        {% if first == false %}
+            <li><a href="/index/{{ current_page - 1 }}">Next page</a></li>
+        {% endif %}
+        {% if last == false %}
+            <li><a href="/index/{{ current_page + 1 }}">Previous Page</a></li>
+        {% endif %}
+    </ul>
     {% endif %}
 {% endblock %}
