@@ -6,17 +6,30 @@
 
 {% endblock %}
 {% block content %}
+
+<div class="top-away">
     {% if warning %}
         <div><span>{{ warning }}</span></div>
     {% endif %}
 
-    <form action="/login" method="post">
-        <div><label for="login">Login</label><input id="login" type="text" name="login" /></div>
-        <div>
-            <label for="password_visible">Password</label>
-            <input id="password_visible" type="password" name="password_visible" required />
+    <form action="/login" method="post" class="form-horizontal" role="form" >
+        <div class="form-group">
+            <label for="login" class="col-sm-1">Login</label>
+            <div class="col-sm-3">
+                <input id="login" type="text" class="form-control" name="login" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password_visible" class="col-sm-1">Password</label>
+            <div class="col-sm-3">
+                <input id="password_visible" type="password" name="password_visible" class="form-control" required />
+            </div>
             <input id="password" type="hidden" name="password" required /></div>
-        <div><input type="submit" value="Login" /></div>
+        <div class="form-group">
+            <div class="col-sm-1">
+                <input class="btn btn-default" type="submit" value="Login" />
+            </div>
+        </div>
     </form>
 
     <script>
@@ -28,5 +41,6 @@
             $("form").submit(onSubmit);
         });
     </script>
+</div>
 
 {% endblock %}

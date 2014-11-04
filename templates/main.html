@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <!-- Own CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/miniblog.css') }}">
     <!-- 2.11 version of jquery on googleapis -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <!-- place holder for page specific css files -->
@@ -21,21 +23,39 @@
     <title>pacu - {{ title }}</title>
   </head>
   <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-1"><a href="/index/0">Home</a>&nbsp;
-            {% if not session.username %}
-                <a href="/login">Login</a></div>
-            {% else %}
-                <a href="/logout">Logout {{ session.username }}</a>
-            {% endif %}
-            </div>
-            {% if session.username %}
-                <div class="col-md-1 col-md-offset-10">Miniblog: <a href="/add_post">Add post</a></div>
-            {% endif %}
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/index/0">Miniblog</a>
         </div>
-    </div>
-    <div class="container">
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="/index/0">Home</a></li>
+            <li>{% if not session.username %}
+                    <a href="/login">Login</a></div>
+                {% else %}
+                    <a href="/logout">Logout&nbsp;{{ session.username }}</a>
+                {% endif %}
+            </li>
+          </ul>
+          {% if session.username %}
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/add_post">Add&nbsp;post</a></li>
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+    <div class="container articles">
         {% block content %}{% endblock %}
     </div>
   </body>
